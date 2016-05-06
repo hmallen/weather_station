@@ -1,16 +1,16 @@
 /*
- * Weather Station
- * - MS5607 Barometer
- * - DHT11 Temperature/Humidity
- * - Photoresistor
- */
+   Weather Station
+   - MS5607 Barometer
+   - DHT11 Temperature/Humidity
+   - Photoresistor
+*/
 
 #include <DHT.h>
 #include <SdFat.h>
 #include <Wire.h>
 #include "IntersemaBaro_MODIFIED.h"
 
-#define chipSelect 4
+#define chipSelect 10
 #define DHT11Pin 2
 //#define lightInput A0
 
@@ -39,6 +39,18 @@ void setup() {
   Serial.print("Initiating barometer...");
   baro.init();
   Serial.println("complete.");
+
+  //writeSD("Light, Temperature(F), Humidity(%RH), Barometric Pressure(Pa)");
+  writeSD("Temperature(F), Humidity(%RH), Barometric Pressure(Pa)");
+
+  for (int x = 0; x < 5; x++) {
+    float tempF = dht.readTemperature(true);
+    delay(400);
+    float humidity = dht.readHumidity();
+    delay(400);
+    unsigned long pressPa = baro.getPressurePascals();
+    delay(100);
+  }
 }
 
 void loop() {
@@ -51,7 +63,8 @@ void loop() {
   unsigned long pressPa = baro.getPressurePascals();
   delay(100);
 
-  String dataString = String(lightVal) + ", " + String(tempF) + ", " + String(humidity) + ", " + String(pressPa);
+  //String dataString = String(lightVal) + ", " + String(tempF) + ", " + String(humidity) + ", " + String(pressPa);
+  String dataString = String(tempF) + ", " + String(humidity) + ", " + String(pressPa);
   Serial.println(dataString);
 
   if (dataLogging == true) {
