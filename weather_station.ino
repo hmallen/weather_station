@@ -79,8 +79,8 @@ void loop() {
 void writeSD(String dataString) {
   if (!logFile.open("data_log.txt", O_RDWR | O_CREAT | O_AT_END)) sd.errorHalt("Failed to open log file.");
 
-  Serial.print("Writing data to log file...");
+  //Serial.print("writing data to log file...");
   logFile.println(dataString);
-  Serial.println("complete.");
+  //Serial.println("complete.");
   logFile.close();
 }
