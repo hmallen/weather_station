@@ -82,6 +82,7 @@ void loop() {
 
     //String dataString = dateString + ", " + timeString + ", " + String(lightVal) + ", " + String(tempF) + ", " + String(humidity) + ", " + String(pressPa);
     dataString = dateString + ", " + timeString + ", " + String(tempF) + ", " + String(humidity) + ", " + String(pressPa);
+    Serial.println(dataString);
   }
   else {
     unsigned long elapsedTime = millis();
