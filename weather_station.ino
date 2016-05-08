@@ -3,6 +3,10 @@
    - MS5607 Barometer
    - DHT11 Temperature/Humidity
    - Photoresistor
+
+   TO DO:
+   - Add user input of start time
+   - Calculate and log actual time based on user input
 */
 
 #include <DHT.h>
